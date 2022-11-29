@@ -1,36 +1,42 @@
 import { ShopDetail } from "src/shops_detail/shops_detail.entity";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
-@Entity({ name: 'shops' })
-export class Shop{
+@Entity({ name: "shops" })
+export class Shop {
+  @OneToOne(() => ShopDetail, (shop_detail) => shop_detail.shop)
+  shop_detail: ShopDetail;
 
-  @OneToOne(() => ShopDetail, shop_detail => shop_detail.shop)
-  shop_detail: ShopDetail
-  
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  shop_info: string;
+  shop_name: string;
 
   @Column()
-  youtube_link: string;
+  address: string;
 
   @Column()
-  business_time: string;
-
-  @Column('text',{
-    array: true,
-    nullable: true
-  })
-  shop_picture: string[];
+  detailed_address: string;
 
   @Column()
-  notice: string;
+  ceo_name: string;
 
   @Column()
-  latitude: number;
+  business_license_number: string;
 
   @Column()
-  longitude: number;
+  manager_name: string;
+
+  @Column()
+  manager_number: string;
+
+  @Column()
+  email: string;
 }

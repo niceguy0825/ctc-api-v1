@@ -11,16 +11,10 @@ export class ShopsDetailService {
 
   async createShopDetail(body: any) {
     const {
-      shop_id,
-      shop_name,
-      address,
-      detailed_address,
-      ceo_name,
-      ceo_phone,
-      business_number,
+      shop_id, shop_name, youtube_link, shop_gif, business_time, shop_picture, notice
     } = body;
 
     const shop_detail = await this.shopDetailRepository.save(body);
-    return body;
+    return shop_detail;
   }
 }
