@@ -7,6 +7,7 @@ import { typeORMConfig } from "./configs/typeorm.config";
 import { ShopsModule } from "./shops/shops.module";
 import { ConfigModule } from "@nestjs/config"
 import { ShopsDetailModule } from './shops_detail/shops_detail.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ShopsDetailModule } from './shops_detail/shops_detail.module';
     TypeOrmModule.forRoot(typeORMConfig),
     ShopsModule,
     ShopsDetailModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
