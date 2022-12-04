@@ -1,4 +1,5 @@
 import { ShopDetail } from "src/shops_detail/shops_detail.entity";
+import { Users } from "src/users/users.entity";
 import {
   Column,
   Entity,
@@ -12,6 +13,10 @@ import {
 export class Shop {
   @OneToOne(() => ShopDetail, (shop_detail) => shop_detail.shop)
   shop_detail: ShopDetail;
+
+  @OneToOne(() => Users, (user) => user.shop)
+  @JoinColumn({ name: "user_id" })
+  user: Users;
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -39,4 +44,7 @@ export class Shop {
 
   @Column()
   email: string;
+
+  @Column()
+  user_id: number;
 }

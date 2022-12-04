@@ -6,7 +6,8 @@ export class ShopsDetailController {
     constructor(private readonly shopDetailService: ShopsDetailService){}
 
     @Post()
-    async createShopDetail(@Body() body: any){
+    async createShopDetail(
+        @Body() body: any){
         return await this.shopDetailService.createShopDetail(body);
     }
 }
