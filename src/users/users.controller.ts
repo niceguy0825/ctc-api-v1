@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UseGuards, ValidationPipe } from "@nestjs/common";
 import { CurrentUser } from "src/common/decorator/user.decorators";
 import { JwtAuthGuard } from "./auth/local.strategy";
 import { SignUpDto } from "./dto/users.dto";
@@ -23,5 +23,17 @@ export class UsersController {
   @Get("current")
   async getCurrentUser(@CurrentUser() user: Users){
     return await this.usersService.getCurrentUser(user)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  async getAllUsers(){
+    return await this.usersService.getAllUsers();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("/:user_id")
+  async getUser(@Param("user_id") user_id: number){
+    return await this.usersService.getUser(user_id);
   }
 }

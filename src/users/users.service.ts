@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { LocalStrategy } from "./auth/local.strategy";
@@ -72,5 +72,25 @@ export class UsersService {
       },
     });
     return currentUser;
+  }
+
+  async getAllUsers() {
+    const getAllUsers = await this.usersRepository.find({});
+
+    return getAllUsers;
+  }
+
+  async getUser(user_id: number) {
+    const getUser = await this.usersRepository.findOne({
+      relations: ["shop"],
+      where: {
+        id: user_id,
+      },
+    });
+    if(!getUser){
+      throw new BadRequestException("유저정보를 확인해주세요.")
+    }
+
+    return getUser;
   }
 }
