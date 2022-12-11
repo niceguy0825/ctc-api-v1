@@ -1,16 +1,16 @@
 import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 import { LocalStrategy } from "./auth/local.strategy";
 import { SignUpDto } from "./dto/users.dto";
 import { Users } from "./users.entity";
-import { UsersRepository } from "./users.repository";
+import { InjectRepository } from "@nestjs/typeorm"
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Users)
-    private usersRepository: UsersRepository,
+    private usersRepository: Repository<Users>,
     private jwt: JwtService
   ) {}
 
@@ -18,9 +18,9 @@ export class UsersService {
     const { uid, type, name, gender, date_of_birth, phone, nickname, email } =
       body;
 
-    const isExistUid = await this.usersRepository.find({ uid: uid });
-    const isExistPhone = await this.usersRepository.find({ phone: phone });
-    const isExistEmail = await this.usersRepository.find({ email: email });
+    const isExistUid = await this.usersRepository.find({ where: {uid: uid} });
+    const isExistPhone = await this.usersRepository.find({ where: {phone: phone} });
+    const isExistEmail = await this.usersRepository.find({ where: {email: email} });
 
     if (isExistUid.length) {
       throw new UnauthorizedException("이미 존재하는 아이디 입니다.");
@@ -50,7 +50,7 @@ export class UsersService {
 
   async signIn(body: any) {
     const { uid } = body;
-    const user = await this.usersRepository.findOne({ uid: uid });
+    const user = await this.usersRepository.findOneBy({ uid: uid });
 
     if (!user) {
       throw new UnauthorizedException("로그인 정보를 확인해주세요.");

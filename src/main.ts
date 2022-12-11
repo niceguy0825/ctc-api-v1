@@ -7,7 +7,7 @@ import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('v2')
+  app.setGlobalPrefix('v1')
   const config = new DocumentBuilder()
     .setTitle("CTC Server")
     .setDescription("CTC Server API 입니다.")

@@ -4,7 +4,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { typeORMConfig } from "./configs/typeorm.config";
 import { ShopsModule } from "./shops/shops.module";
-import { ConfigModule } from "@nestjs/config"
+import { ConfigModule, ConfigService } from "@nestjs/config"
 import { ShopsDetailModule } from './shops_detail/shops_detail.module';
 import { UsersModule } from './users/users.module';
 
@@ -17,6 +17,6 @@ import { UsersModule } from './users/users.module';
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ConfigService],
 })
 export class AppModule {}

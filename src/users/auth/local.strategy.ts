@@ -1,9 +1,9 @@
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { AuthGuard, PassportStrategy } from "@nestjs/passport";
-import { UsersRepository } from "src/users/users.repository";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Users } from "../users.entity";
+import { Repository } from "typeorm";
 
 type Payload = {
   uid: string;
@@ -17,7 +17,7 @@ export class JwtAuthGuard extends AuthGuard("jwt") {}
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(
     @InjectRepository(Users)
-    private readonly usersRepository: UsersRepository
+    private readonly usersRepository: Repository<Users>
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -27,7 +27,9 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: Payload) {
-    const user = await this.usersRepository.findOne({ id: payload.sub });
+    const user = await this.usersRepository.findOne({
+      where: { id: payload.sub },
+    });
     if (user) {
       return user;
     } else {
