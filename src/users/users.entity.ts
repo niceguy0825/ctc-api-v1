@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Shop } from "src/shops/shops.entity";
 import {
   Column,
@@ -9,14 +10,57 @@ import {
 
 @Entity({ name: "users" })
 export class Users {
+  @ApiProperty({
+    example: 13,
+  })
   @PrimaryGeneratedColumn() id: number;
   @OneToOne(() => Shop, (shop) => shop.user) shop: Shop;
-  @Column() uid: string;
-  @Column() name: string;
-  @Column() gender: string;
-  @Column() date_of_birth: string;
-  @Column() phone: string;
-  @Column() nickname: string;
-  @Column() type: string;
-  @Column() email: string;
+
+  @ApiProperty({
+    example: "10049223",
+  })
+  @Column()
+  uid: string;
+  
+  @ApiProperty({
+    example: "홍길동",
+  })
+  @Column()
+  name: string;
+
+  @ApiProperty({
+    example: "M",
+  })
+  @Column()
+  gender: string;
+
+  @ApiProperty({
+    example: "1988-11-08",
+  })
+  @Column()
+  date_of_birth: string;
+
+  @ApiProperty({
+    example: "01012345678",
+  })
+  @Column()
+  phone: string;
+
+  @ApiProperty({
+    example: "닉네임",
+  })
+  @Column()
+  nickname: string;
+
+  @ApiProperty({
+    example: "kakao",
+  })
+  @Column()
+  type: string;
+
+  @ApiProperty({
+    example: "test@email.com",
+  })
+  @Column()
+  email: string;
 }

@@ -31,11 +31,8 @@ export class ShopDetail {
   @Column()
   business_time: string;
 
-  @Column("text", {
-    array: true,
-    nullable: true,
-  })
-  shop_picture: string[];
+  @Column({ array: true })
+  shop_picture: string;
 
   @Column()
   notice: string;

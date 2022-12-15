@@ -1,8 +1,6 @@
 import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Repository } from "typeorm";
-import { LocalStrategy } from "./auth/local.strategy";
-import { SignUpDto } from "./dto/users.dto";
 import { Users } from "./users.entity";
 import { InjectRepository } from "@nestjs/typeorm"
 
