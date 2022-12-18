@@ -1,5 +1,7 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Shops_detail_CreateDto } from "./dto/shops_detail.create.dto";
+import { Shops_detailDto,  } from "./dto/shops_detail.dto";
 import { ShopsDetailService } from "./shops_detail.service";
 
 @ApiTags("Shops_detail")
@@ -7,8 +9,14 @@ import { ShopsDetailService } from "./shops_detail.service";
 export class ShopsDetailController {
   constructor(private readonly shopDetailService: ShopsDetailService) {}
 
+  @ApiOperation({ summary: "판매점 상세등록" })
+  @ApiResponse({
+    status: 200,
+    description: "Success",
+    type: Shops_detailDto,
+  })
   @Post()
-  async createShopDetail(@Body() body: any) {
+  async createShopDetail(@Body() body: Shops_detail_CreateDto) {
     return await this.shopDetailService.createShopDetail(body);
   }
 }
