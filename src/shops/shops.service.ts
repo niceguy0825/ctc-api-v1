@@ -26,7 +26,7 @@ export class ShopsService {
   }
 
   async getAll() {
-    const shops = this.shopsRepository.find({ relations: ["shop_detail", "user"] });
+    const shops = this.shopsRepository.find({ relations: ["shop_detail", "user", "products"] });
     return shops;
   }
 

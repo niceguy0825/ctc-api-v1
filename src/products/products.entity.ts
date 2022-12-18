@@ -1,3 +1,4 @@
+import { IsNotEmpty } from "class-validator";
 import { Shop } from "src/shops/shops.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -10,6 +11,7 @@ export class Products {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @IsNotEmpty()
   @Column()
   shop_id: number;
 
