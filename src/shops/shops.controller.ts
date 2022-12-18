@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CurrentUser } from "src/common/decorator/user.decorators";
 import { JwtAuthGuard } from "src/users/auth/local.strategy";
@@ -19,5 +19,10 @@ export class ShopsController {
   @Get()
   async getAll() {
     return await this.shopsService.getAll();
+  }
+
+  @Get('/:id')
+  async getOneByShopId(@Param('id') id: number) {
+    return await this.shopsService.getOne(id);
   }
 }

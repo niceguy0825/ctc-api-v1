@@ -7,7 +7,12 @@ import {
   UseGuards,
   ValidationPipe,
 } from "@nestjs/common";
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 import { CurrentUser } from "src/common/decorator/user.decorators";
 import { JwtAuthGuard } from "./auth/local.strategy";
 import { UsersDto } from "./dto/users.dto";
@@ -19,16 +24,16 @@ import { UsersService } from "./users.service";
 @ApiTags("Users")
 @ApiResponse({
   status: 500,
-  description: 'Internal Server Error',
+  description: "Internal Server Error",
 })
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @ApiOperation({ summary: '회원가입' })
+  @ApiOperation({ summary: "회원가입" })
   @ApiResponse({
     status: 201,
-    description: 'Success',
+    description: "Success",
     type: SignUpResponseDto,
   })
   @Post("signup")
@@ -36,14 +41,14 @@ export class UsersController {
     return await this.usersService.signUp(body);
   }
 
-  @ApiOperation({ summary: '로그인' })
+  @ApiOperation({ summary: "로그인" })
   @ApiResponse({
     status: 201,
-    description: 'Success',
+    description: "Success",
     schema: {
-      type: 'json',
+      type: "json",
       example: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp',
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp",
       },
     },
   })
@@ -52,39 +57,39 @@ export class UsersController {
     return await this.usersService.signIn(body);
   }
 
-  @ApiOperation({ summary: '현재 유저 조회' })
+  @ApiOperation({ summary: "현재 유저 조회" })
   @ApiResponse({
     status: 200,
-    description: 'Success',
+    description: "Success",
     type: UsersDto,
   })
-  @ApiBearerAuth('access-token')
+  @ApiBearerAuth("access-token")
   @UseGuards(JwtAuthGuard)
   @Get("current")
   async getCurrentUser(@CurrentUser() user: Users) {
     return await this.usersService.getCurrentUser(user);
   }
 
-  @ApiOperation({ summary: '모든 유저 조회' })
+  @ApiOperation({ summary: "모든 유저 조회" })
   @ApiResponse({
     status: 200,
-    description: 'Success',
+    description: "Success",
     type: [UsersDto],
   })
-  @ApiBearerAuth('access-token')
+  @ApiBearerAuth("access-token")
   @UseGuards(JwtAuthGuard)
   @Get()
   async getAllUsers() {
     return await this.usersService.getAllUsers();
   }
 
-  @ApiOperation({ summary: '특정 유저 조회' })
+  @ApiOperation({ summary: "특정 유저 조회" })
   @ApiResponse({
     status: 200,
-    description: 'Success',
+    description: "Success",
     type: UsersDto,
   })
-  @ApiBearerAuth('access-token')
+  @ApiBearerAuth("access-token")
   @UseGuards(JwtAuthGuard)
   @Get("/:user_id")
   async getUser(@Param("user_id") user_id: number) {
