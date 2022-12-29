@@ -10,6 +10,11 @@ export class RepresentProductService {
         private representProductRepository: Repository<RepresentProduct>
     ) {}
 
+    async getAllRepresentProduct() {
+        const products = await this.representProductRepository.find({});
+        return products;
+    }
+
     async createRepresentProduct(body: any) {
         const {
         title,
