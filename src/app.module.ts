@@ -9,6 +9,7 @@ import { ShopsDetailModule } from "./shops_detail/shops_detail.module";
 import { UsersModule } from "./users/users.module";
 import { ProductsModule } from "./products/products.module";
 import { LoggerMiddleware } from "./common/middlewares/logger.middleware";
+import { RepresentProductModule } from './represent_product/represent_product.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { LoggerMiddleware } from "./common/middlewares/logger.middleware";
     ShopsDetailModule,
     UsersModule,
     ProductsModule,
+    RepresentProductModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
