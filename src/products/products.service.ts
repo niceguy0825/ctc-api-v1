@@ -27,4 +27,21 @@ export class ProductsService {
     const product = await this.productsRepository.save(body);
     return product;
   }
+
+  async getAllProducts() {
+    const products = await this.productsRepository.find({});
+    return products;
+  }
+
+  async getProductById(id: number) {
+    const product = await this.productsRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+    if (!product) {
+      throw new BadRequestException("제품정보가 존재하지 않습니다.");
+    }
+    return product;
+  }
 }

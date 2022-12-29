@@ -16,9 +16,12 @@ export class ShopsService {
   ) {}
 
   async createShop(user: Users, body: any) {
-    const isExistShop = this.shopsRepository.find({
+    console.log("request user.id :: ", user.id);
+
+    const isExistShop = await this.shopsRepository.findOne({
       where: { user_id: user.id },
     });
+
     if (isExistShop) {
       throw new UnauthorizedException("이미 등록된 판매점이 존재 합니다.");
     }

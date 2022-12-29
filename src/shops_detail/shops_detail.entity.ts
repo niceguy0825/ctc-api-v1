@@ -24,7 +24,6 @@ export class ShopDetail {
   @ApiProperty({
     example: 13,
   })
-  @IsString()
   @IsNotEmpty()
   @Column()
   shop_id: number;
