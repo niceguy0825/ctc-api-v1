@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 import { Shop } from "src/shops/shops.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: "products" })
 export class Products {
@@ -35,4 +35,13 @@ export class Products {
 
   @Column({ array: true })
   des_keyword: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @DeleteDateColumn()
+  deleted_at: Date;
 }

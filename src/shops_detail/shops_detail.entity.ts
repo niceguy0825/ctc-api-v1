@@ -3,10 +3,13 @@ import { IsArray, IsNotEmpty, IsString } from "class-validator";
 import { Shop } from "src/shops/shops.entity";
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity({ name: "shop_detail" })
@@ -70,4 +73,13 @@ export class ShopDetail {
   @IsString()
   @Column()
   notice: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @DeleteDateColumn()
+  deleted_at: Date;
 }

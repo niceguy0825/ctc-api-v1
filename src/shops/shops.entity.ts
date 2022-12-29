@@ -3,12 +3,15 @@ import { ShopDetail } from "src/shops_detail/shops_detail.entity";
 import { Users } from "src/users/users.entity";
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity({ name: "shops" })
@@ -52,4 +55,13 @@ export class Shop {
 
   @Column()
   user_id: number;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @DeleteDateColumn()
+  deleted_at: Date;
 }

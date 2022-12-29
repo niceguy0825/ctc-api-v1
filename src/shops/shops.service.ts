@@ -6,6 +6,7 @@ import {
 import { InjectRepository } from "@nestjs/typeorm";
 import { Users } from "src/users/users.entity";
 import { Repository } from "typeorm";
+import { createShopRequestDto, updateShopRequestDto } from "./dto/shops.dto";
 import { Shop } from "./shops.entity";
 
 @Injectable()
@@ -15,9 +16,7 @@ export class ShopsService {
     @InjectRepository(Users) private readonly usersRepository: Repository<Users>
   ) {}
 
-  async createShop(user: Users, body: any) {
-    console.log("request user.id :: ", user.id);
-
+  async createShop(user: Users, body: createShopRequestDto) {
     const isExistShop = await this.shopsRepository.findOne({
       where: { user_id: user.id },
     });
@@ -48,4 +47,26 @@ export class ShopsService {
     });
     return shop;
   }
+
+  async updateShop(body: updateShopRequestDto) {
+    const shop = this.shopsRepository.findOne({
+      where: {
+        id: body.id,
+      },
+    });
+    if (!shop) {
+      throw new BadRequestException("판매점 정보가 존재하지 않습니다.");
+    }
+    return await this.shopsRepository.save(body);
+  }
+
+  async deleteShop(id: number) {
+    const shop = await this.shopsRepository.findOne({
+      where: {
+        id: id
+      }
+    })
+    return await this.shopsRepository.softRemove(shop);
+  }
+
 }
