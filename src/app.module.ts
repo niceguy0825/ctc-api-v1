@@ -10,6 +10,7 @@ import { UsersModule } from "./users/users.module";
 import { ProductsModule } from "./products/products.module";
 import { LoggerMiddleware } from "./common/middlewares/logger.middleware";
 import { RepresentProductModule } from './represent_product/represent_product.module';
+import { InfluencerModule } from "./influencer/influencer.module";
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { RepresentProductModule } from './represent_product/represent_product.mo
     UsersModule,
     ProductsModule,
     RepresentProductModule,
+    InfluencerModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
