@@ -6,10 +6,16 @@ import { Influencer } from './entity/influencer.entity';
 
 @Injectable()
 export class InfluencerService {
+    
     constructor(
         @InjectRepository(Influencer)
         private influenceRepository: Repository<Influencer>
     ) {}
+
+    async getAllinfluencer() {
+        const influence = await this.influenceRepository.find({});
+        return influence;
+    }
 
     async createInfluencer(body: InfluencerRequestDto) {
         const {

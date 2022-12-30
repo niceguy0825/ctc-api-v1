@@ -8,6 +8,12 @@ import { InfluencerService } from './influencer.service';
 export class InfluencerController {
     constructor(private readonly influenceService: InfluencerService) {}
     
+    @ApiOperation({ summary: "전체 인플루언서 조회" })
+    @Get()
+    async getAllInfluencer() {
+        return await this.influenceService.getAllinfluencer();
+    }
+    
     @ApiOperation({ summary: "인플루언스 등록" })
     @ApiResponse({
         status: 200,

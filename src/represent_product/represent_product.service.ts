@@ -17,10 +17,10 @@ export class RepresentProductService {
 
     async createRepresentProduct(body: any) {
         const {
-        title,
-        sub_title,
-        main_img,
-        sub_img,
+            title,
+            sub_title,
+            main_img,
+            sub_img,
         } = body;
     
         const represent_product = await this.representProductRepository.save(body);
