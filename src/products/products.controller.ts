@@ -17,7 +17,7 @@ import {
 import { ProductsService } from "./products.service";
 import { Request } from "express";
 
-@ApiTags("Products")
+@ApiTags("제품 정보")
 @Controller("products")
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}

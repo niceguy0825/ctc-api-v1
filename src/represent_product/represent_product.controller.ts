@@ -3,7 +3,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RepresentProductRequestDto } from './dto/represent_product.dto';
 import { RepresentProductService } from './represent_product.service';
 
-@ApiTags("대표제품 정보")
+@ApiTags("[랜딩]대표제품 정보")
 @Controller('represent_product')
 export class RepresentProductController {
     constructor(private readonly representProductService: RepresentProductService) {}

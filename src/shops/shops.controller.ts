@@ -15,7 +15,7 @@ import { Users } from "src/users/users.entity";
 import { createShopRequestDto, updateShopRequestDto } from "./dto/shops.dto";
 import { ShopsService } from "./shops.service";
 
-@ApiTags("Shops")
+@ApiTags("판매점 정보")
 @Controller("shops")
 export class ShopsController {
   constructor(private readonly shopsService: ShopsService) {}

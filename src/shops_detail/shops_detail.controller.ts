@@ -4,7 +4,7 @@ import { Shops_detail_CreateDto } from "./dto/shops_detail.create.dto";
 import { Shops_detailDto,  } from "./dto/shops_detail.dto";
 import { ShopsDetailService } from "./shops_detail.service";
 
-@ApiTags("Shops_detail")
+@ApiTags("판매점 상세 정보")
 @Controller("shops_detail")
 export class ShopsDetailController {
   constructor(private readonly shopDetailService: ShopsDetailService) {}
